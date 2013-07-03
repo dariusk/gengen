@@ -11,13 +11,14 @@ var pick = function(array) {
   return array[Math.floor(Math.random()*array.length)];
 };
 
-var $genButton = $('<button onclick="generate()">Generate</button><div id="generated">...</div>');
 
-function doIt() {
+function doIt(key) {
   url = $('#url').val();
+  var key = parseUrl(url);
+  var $genButton = $('<button onclick="generate()">Generate</button><div id="generated">...</div><p><a href="gen.html?key=' + key + '">Share this with your friends!</a>');
 
   ds = new Miso.Dataset({
-    key : parseUrl(url),
+    key : key,
     worksheet : '1',
     importer: Miso.Dataset.Importers.GoogleSpreadsheet,
     parser : Miso.Dataset.Parsers.GoogleSpreadsheet
