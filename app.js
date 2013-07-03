@@ -1,4 +1,5 @@
-var ds;
+var ds,
+    generated = false;
 
 function parseUrl(url) {
   return url.substr(url.indexOf('key=')+4, url.indexOf('#')-(url.indexOf('key=')+4));
@@ -14,7 +15,7 @@ var pick = function(array) {
 function doIt(key) {
   url = $('#url').val();
   var key = parseUrl(url);
-  var $genButton = $('<button onclick="generate()">Generate</button><div id="generated">...</div><p><a href="gen.html?key=' + key + '">Share this with your friends!</a>');
+  var $genButton = $('<div id="generator"><button onclick="generate()">Generate</button><h3 id="title">...</h3><h4 id="author"></h4><div id="generated">...</div><p><a href="gen.html?key=' + key + '">Share this link with your friends!</a></div>');
 
   ds = new Miso.Dataset({
     key : key,
@@ -25,29 +26,39 @@ function doIt(key) {
 
   ds.fetch({
     success : function() {
-      // your success callback here!
+      if (generated) {
+        $('#generator').remove();
+      }
       $('#result').text('Success! Now you can generate stuff:');
       $('#result').after($genButton);
+      generated = true;
     },
     error : function() {
-      // your error callback here!
+      $('#result').text('Um, something went wrong...');
     }
   });
 }
 
 function generate() {
   var result = '';
+  var title = 'My Generator';
+  var author = 'Someone';
   ds.eachColumn(function(columnName, column, index) {
     a = column.data;
     var uniq = _.uniq(a);
-    // if the array is all nulls, just use the column name
-    if (uniq.length === 1 && uniq[0] === null) {
-      result += columnName + ' ';
+    // if it's a title, do special stuff
+    if (columnName.toLowerCase() === 'title') {
+      title = column.data[0];
+    }
+    else if (columnName.toLowerCase() === 'author') {
+      author = column.data[0];
     }
     else {
       result += pick(column.data) + ' ';
     }
   });
+  $('#title').text(title);
+  $('#author').text('by ' + author);
   $('#generated').text(result);
 }
 

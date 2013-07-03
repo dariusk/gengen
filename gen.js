@@ -25,7 +25,7 @@ function doIt(key) {
     success : function() {
       // your success callback here!
       generate();
-      $('#generated').after($genButton);
+      $('#title').before($genButton);
     },
     error : function() {
       // your error callback here!
