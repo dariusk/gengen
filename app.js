@@ -15,7 +15,7 @@ var pick = function(array) {
 function doIt(key) {
   url = $('#url').val();
   var key = parseUrl(url);
-  var $genButton = $('<div id="generator"><button onclick="generate()">Generate</button><h3 id="title">...</h3><h4 id="author"></h4><div id="generated">...</div><p><a href="gen.html?key=' + key + '">Share this link with your friends!</a></div>');
+  var $genButton = $('<div id="generator"><button onclick="generate()">Generate</button><h2 id="title">...</h2><h3 id="author"></h3><div id="generated">...</div><p><a href="gen.html?key=' + key + '">Share this link with your friends!</a></div>');
 
   ds = new Miso.Dataset({
     key : key,

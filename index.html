@@ -28,7 +28,7 @@
   </head>
   <body>
     <h1>GenGen</h1>
-    <h3 id="byline">by <a href="http://twitter.com/tinysubversions">Darius Kazemi</a></h3>
+    <h3 id="byline">by <a href="http://twitter.com/tinysubversions">Darius Kazemi</a>, based on an idea <a href="https://twitter.com/numberless">Scott Jon Siegel</a> had</h3>
     <input id="url" style="width:500px;" placeholder="paste in a google spreadsheet url"></input>
     <button onclick="doIt()">submit</button>
     <div id="result">waiting for a spreadsheet...</div>
@@ -38,7 +38,7 @@
       <p>Hey! Have you ever wanted to build one of those text generators? You know what I mean: stuff that makes a random videogame name, or a plausible character name, etc. Well now you can do it with a simple Google Spreadsheet.</p>
       <p>Probably the best way to show you is by example. Let's say you wanted to make a simple generator, that does: "I am the [saddest/happiest] [panda/kitty/sloth]." You'd make this spreadsheet:</p>
       <img src="1.png">
-      <p>If a column has one row in it, then it's always going to use the header value itself. If a column has more than one row of data, then it ignores the header name, and picks something at random beneath it. <strong>Column headers must be unique,</strong> so you can't name two columns "Noun" or something.</p>
+      <p>Each column contains rows of data. If a column has one row of data, it only ever picks that one. If a column has more than one row of data, then it picks something at random. <strong>Column headers must be unique,</strong> so you can't name two columns "Noun" or something. I usually name them 1, 2, 3, etc, since they aren't used as anything but unique internal IDs.</p>
       <p>There are also two special column names: if you call something "Title", the first cell under that will be the name of your generator. Otherwise it defaults to "My Generator". If you call something "Author", the first cell under that will be the byline for the generator. Otherwise it defaults to "Someone".</p>
       <p>Then when you're ready, select "File" --> "Publish to the web" and click on the "Start publishing" button. <strong>You must do this step, otherwise it won't work.</strong></p>
       <img src="2.png">
