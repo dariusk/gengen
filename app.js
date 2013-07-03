@@ -1,3 +1,5 @@
+var ds;
+
 function parseUrl(url) {
   return url.substr(url.indexOf('key=')+4, url.indexOf('#')-(url.indexOf('key=')+4));
 }
@@ -9,10 +11,12 @@ var pick = function(array) {
   return array[Math.floor(Math.random()*array.length)];
 };
 
+var $genButton = $('<button onclick="generate()">Generate</button><div id="generated">...</div>');
+
 function doIt() {
   url = $('#url').val();
 
-  var ds = new Miso.Dataset({
+  ds = new Miso.Dataset({
     key : parseUrl(url),
     worksheet : '1',
     importer: Miso.Dataset.Importers.GoogleSpreadsheet,
@@ -22,20 +26,8 @@ function doIt() {
   ds.fetch({
     success : function() {
       // your success callback here!
-      console.log(ds);
-      var result = '';
-      ds.eachColumn(function(columnName, column, index) {
-        a = column.data;
-        var uniq = _.uniq(a);
-        // if the array is all nulls, just use the column name
-        if (uniq.length === 1 && uniq[0] === null) {
-          result += columnName + ' ';
-        }
-        else {
-          result += pick(column.data) + ' ';
-        }
-      });
-      $('#result').text(result);
+      $('#result').text('Success! Now you can generate stuff:');
+      $('#result').after($genButton);
     },
     error : function() {
       // your error callback here!
@@ -43,4 +35,18 @@ function doIt() {
   });
 }
 
-
+function generate() {
+  var result = '';
+  ds.eachColumn(function(columnName, column, index) {
+    a = column.data;
+    var uniq = _.uniq(a);
+    // if the array is all nulls, just use the column name
+    if (uniq.length === 1 && uniq[0] === null) {
+      result += columnName + ' ';
+    }
+    else {
+      result += pick(column.data) + ' ';
+    }
+  });
+  $('#generated').text(result);
+}
