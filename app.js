@@ -11,7 +11,6 @@ var pick = function(array) {
   return array[Math.floor(Math.random()*array.length)];
 };
 
-
 function doIt(key) {
   url = $('#url').val();
   var key = parseUrl(url);
@@ -50,4 +49,8 @@ function generate() {
     }
   });
   $('#generated').text(result);
+}
+
+function showHelp() {
+  $('#help').fadeToggle();
 }
