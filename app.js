@@ -32,6 +32,7 @@ function doIt(key) {
       $('#result').text('Success! Now you can generate stuff:');
       $('#result').after($genButton);
       generated = true;
+      generate();
     },
     error : function() {
       $('#result').text('Um, something went wrong...');
