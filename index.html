@@ -11,6 +11,10 @@
         margin: 30px;
         font-family: sans-serif;
       }
+      h2 {
+        margin-top: -20px;
+        color: rgba(0,0,0,0.5);
+      }
       h3 {
         margin-top: -20px;
         color: rgba(0,0,0,0.5);
@@ -28,12 +32,13 @@
   </head>
   <body>
     <h1>GenGen</h1>
+    <h2>design a text generator in Google Spreadsheets</h2>
     <h3 id="byline">by <a href="http://twitter.com/tinysubversions">Darius Kazemi</a>, based on an idea <a href="https://twitter.com/numberless">Scott Jon Siegel</a> had</h3>
     <input id="url" style="width:500px;" placeholder="paste in a google spreadsheet url"></input>
     <button onclick="doIt()">submit</button>
     <div id="result">waiting for a spreadsheet... (paste in <a href="https://docs.google.com/spreadsheet/ccc?key=0AhU_yVabdqAFdGhKUm9SOWEwSkktOENodkVTeDlyaUE#gid=0">this spreadsheet URL</a> for an example)</div>
 
-    <p><a href="#" onclick="showHelp()">What is this thing???</a></p>
+    <p><a href="#" onclick="showHelp()">What is this thing??? How do I use it?</a></p>
     <div id="help" style="display:none;">
       <p>Hey! Have you ever wanted to build one of those text generators? You know what I mean: stuff that makes a random videogame name, or a plausible character name, etc. Well now you can do it with a simple Google Spreadsheet.</p>
       <p>Probably the best way to show you is by example. Let's say you wanted to make a simple generator, that does: "I am the [saddest/happiest] [panda/kitty/sloth]." You'd make this spreadsheet:</p>
