@@ -1,4 +1,4 @@
-var $genButton = $('<button onclick="generate()">Generate</button>');
+var $genButton = $('<button onclick="generate()">Generate Another!</button>');
 
 function gup( name ){
   name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");  
@@ -25,7 +25,7 @@ function doIt(key) {
     success : function() {
       // your success callback here!
       generate();
-      $('#title').before($genButton);
+      $('#generated').after($genButton);
     },
     error : function() {
       // your error callback here!
