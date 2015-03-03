@@ -2,7 +2,15 @@ var ds,
     generated = false;
 
 function parseUrl(url) {
-  return url.substr(url.indexOf('key=')+4, url.indexOf('#')-(url.indexOf('key=')+4));
+  if (url.match(/\/d\/(.*)\//)) {
+    return url.match(/\/d\/(.*)\//)[1];
+  }
+    
+  if (url.match(/key=(.*)#/)) {
+    return url.match(/key=(.*)#/)[1];
+  }
+
+  else return null;
 }
 
 var pick = function(array) {
@@ -15,6 +23,7 @@ var pick = function(array) {
 function doIt(key) {
   url = $('#url').val();
   var key = parseUrl(url);
+  console.log(key);
   var $genButton = $('<div id="generator"><button onclick="generate()">Generate</button><h2 id="title">...</h2><h3 id="author"></h3><div id="generated">...</div><p><a href="gen.html?key=' + key + '">Share this link with your friends!</a></div>');
 
   ds = new Miso.Dataset({
